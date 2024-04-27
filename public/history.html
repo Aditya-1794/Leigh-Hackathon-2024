@@ -31,27 +31,50 @@
     <a href="index.html">Leaderboard</a>
     <!-- this section will have a breakdown of like screenTime, etc and tell you how to be more productive -->
     <a href="history.html">Score History</a>
-    <a href="#"></a>
   </div>
 
   <!-- left row has the score calculator in it -->
   <div class="row">
-    <div class="column side">
-        
+    <div class="column left">
+      <!-- charts -->
+      <div class="chart-container">
+        <h2>Score history</h2>
+        <canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
+        <button class='button-18' onclick='clearLocalStorage()'>Clear history</button>
+        <br>
+        <br>
+        <h2>Score breakdown</h2>
+        <canvas id="myChart3" style="width:100%;max-width:600px"></canvas>
+      </div>
     </div>
     
-    <div class="column side">
-      
+    <div class="column right">
+      <h2>How to improve your productivity</h2>
+      <p id='feedback'>Generating feedback</p>
+      <div class="loading">
+        <span class="up"></span>
+        <span class="down"></span>
+        <span class="ultradown"></span>
+      </div>
+      <textarea id="feedbackTextarea" rows="10" cols="50" readonly></textarea><br>
     </div>
   </div>
 
 
   </div>
-  <script src="script.js"></script>
+  <!-- Include the cohere-ai library directly -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/cohere-ai/dist/cohere-ai.min.js"></script> -->
+  
+  <!-- <script src="script.js"></script> -->
   <script src="calculator.js"></script>
   <script src=".models/Score.js"></script>
-  <script src="frontend.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src=".index.js"</script>
+  <script src="frontend.js"></script> 
+  <script src="history.js"></script>
+  <!-- <script type="module" src="feedback.js"></script> -->
+  <script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
 
   <style>
     html {
@@ -111,8 +134,14 @@
     }
 
     /* Left and right column */
-    .column.side {
-      width: 50%;
+    .column.right {
+      width: 40%;
+      float: right;
+    }
+
+    .column.left {
+      width: 40%;
+      float: left;
     }
 
     /* Clear floats after the columns */
@@ -236,13 +265,16 @@
 
     /* Style the front side (fallback if image is missing) */
     .flip-card-front {
-      background-color: #dea24f;
+      background-color: #65b3af;
       color: black;
+
+      border-radius: 10px;
     }
 
     /* Style the back side */
     .flip-card-back {
-      background-color: #dea24f;
+      background-color: #65b3af;
+      border-radius: 10px;
       color: black;
       transform: rotateX(180deg);
       font-size: 12px;
@@ -272,6 +304,71 @@
       background-repeat: repeat no-repeat;
       background-position: 2vw bottom;
       background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1200 121' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0 1C19.5523 3 32.2291 5 51.5 8C104.5 17 200 39 300 60C400 80 500 101 600 93C700 84 800 48 900 27C987.526 5 1085.36 -1 1150 0C1169.54 -1 1180.49 0 1200 1V121H1150C1100 121 1000 121 900 121C800 121 700 121 600 121C500 121 400 121 300 121C200 121 100 121 50 121H0V1.98128Z' fill='%23FFF5EE'/></svg>");
+    }
+
+    .loading-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loading span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      background-color: #333;
+      border-radius: 50%;
+      animation-duration: 0.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    .up {
+      animation-name: jumpUp;
+    }
+
+    .down {
+      animation-name: jumpDown;
+      animation-delay:0.1s;
+    }
+    .ultradown{
+      animation-name: ultraDown;
+      animation-delay:0.2s;
+    }
+
+    @keyframes jumpUp {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes jumpDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    @keyframes ultraDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
     }
 
     @media(max-width:850px) {

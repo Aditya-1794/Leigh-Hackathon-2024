@@ -1,10 +1,5 @@
 isShowing = false;
 
-window.onload = function() {
-  togglePopup();
-  
-};
-
 function togglePopup() {
   if(isShowing) {
     popup.style.visibility='hidden'
@@ -109,3 +104,74 @@ async function fetchLeaderboard() {
 }
 
 fetchLeaderboard();
+
+function updateAchievements() {
+    var stats = [];
+    stats = JSON.parse(localStorage.getItem('prevScores'));
+    console.log(stats);
+    const achievementWindow = document.getElementById('achievementWindow');
+
+  if (stats !== null) {
+      // First achievement
+      if (stats.length >= 20) {
+          console.log('1');
+          // Add first achievement
+          const achievement1 = document.createElement('div');
+          achievement1.className = 'achievement';
+          achievement1.innerHTML = `
+              <img src="images/ach1.png" alt="First Achievement">
+          `;
+          achievementWindow.appendChild(achievement1);
+      }
+
+      if (stats.length >= 10) {
+          console.log('2');
+          // Add second achievement
+          const achievement2 = document.createElement('div');
+          achievement2.className = 'achievement';
+          achievement2.innerHTML = `
+              <img src="images/ach2.png" alt="Second Achievement">
+          `;
+          achievementWindow.appendChild(achievement2);
+      }
+
+      var max = stats[0]; // Corrected variable name
+      var min = 100;
+      for (let i = 0; i < stats.length; i++) {
+          if (stats[i] > max) {
+              max = stats[i];
+          }
+          if (stats[i] < min) {
+              min = stats[i]; // Update min correctly
+          }
+      }
+
+      if (max >= 80) {
+          console.log('3');
+          // Add third achievement
+          const achievement3 = document.createElement('div');
+          achievement3.className = 'achievement';
+          achievement3.innerHTML = `
+              <img src="images/ach3.png" alt="Third Achievement">
+          `;
+          achievementWindow.appendChild(achievement3);
+      }
+
+      if (min < 20) {
+          console.log('4');
+          // Add fourth achievement
+          const achievement4 = document.createElement('div');
+          achievement4.className = 'achievement';
+          achievement4.innerHTML = `
+              <img src="images/ach4.png" alt="Fourth Achievement">
+          `;
+        achievementWindow.appendChild(achievement4);
+      }
+    achievementWindow.isShowing=true;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  togglePopup();
+  updateAchievements();
+});

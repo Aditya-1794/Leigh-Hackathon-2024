@@ -85,4 +85,3 @@ window.onload = () => {
 };
 
 // Add event listener to the form for form submission
-

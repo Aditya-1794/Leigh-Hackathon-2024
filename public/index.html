@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Sofia+Sans:wght@500&display=swap" rel="stylesheet">
 
 </head>
-
 <body>
   <!-- main page content -->
   <div class='header wave-container'>
@@ -31,11 +30,9 @@
     <a href="index.html">Leaderboard</a>
     <!-- this section will have a breakdown of like screenTime, etc and tell you how to be more productive -->
     <a href="history.html">Score History</a>
-    <a href="#"></a>
   </div>
-
   <!-- left row has the score calculator in it -->
-  <div class="row">
+  <div class="row" style='margin-left: 20px;'>
     <div class="column side">
       <!-- 
       popup stuff
@@ -43,7 +40,7 @@
       <div id='popup'>
         <!-- frame 1 -->
         <div id=frame1>
-          <center><h3>Calculate your productivity score</h3></center>
+          <center><h2>Calculate your productivity score</h2></center>
           <div class='items'>
             <!-- sleep -->
             <div id='sleep' class='item'>
@@ -78,7 +75,7 @@
         </div>
 
         <!-- frame 2 -->
-        <div id='frame2'>
+        <div id='frame2' style='margin-left: 20px;'>
           <center><h3>Your productivity report</h3></center>
           <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
           <!-- stats -->
@@ -107,19 +104,21 @@
     </div>
 
     <div class="column side">
-      <h2>Friends</h2>
-      <p>Click the star icon on a person's name to add them to your friends list</p>
+      <h2>Achievements</h2>
+      <p>Earn achievements by reaching new productivity goals</p>
+      <div id='achievementWindow'></div>
     </div>
   </div>
-    
-    
   </div>
   <script src="script.js"></script>
   <script src="calculator.js"></script>
   <script src=".models/Score.js"></script>
   <script src="frontend.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
+  <audio controls autoplay>
+    <source src="marimba-tropical-african-travel-game-197517.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
   <style>
     html {
       height: 100%;
@@ -277,7 +276,7 @@
       background-color: transparent;
       width: 200px;
       height: 125px;
-      border: 2px solid #f1f1f1;
+      border: 5px solid #f1f1f1;
       border-radius: 15px;
       perspective: 1000px; /* Remove this if you don't want the 3D effect */
     }
@@ -308,16 +307,20 @@
 
     /* Style the front side (fallback if image is missing) */
     .flip-card-front {
-      background-color: #dea24f;
+      background-color: #65b3af;
       color: black;
+
+      border-radius: 10px;
     }
 
     /* Style the back side */
     .flip-card-back {
-      background-color: #dea24f;
+      background-color: #65b3af;
       color: black;
       transform: rotateX(180deg);
       font-size: 12px;
+
+      border-radius: 10px;
     }
 
     .leaderboard-item {

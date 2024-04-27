@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Score = require('./models/Score');
 
+const { CohereClient } = require('cohere-ai');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -51,6 +53,62 @@ app.post('/add-score', async (req, res) => {
     res.json({ message: 'Score added successfully' });
   } catch (err) {
     console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+// Assuming you have an existing Express app initialized
+
+// Get scores based on username
+app.get('/scores/:username', async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    // Fetch scores from MongoDB Atlas based on username
+    const scores = await Score.find({ username });
+
+    res.json(scores);
+  } catch (error) {
+    console.error('Error fetching scores:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+// Define route to handle feedback request
+app.post('/api/getFeedback', async (req, res) => {
+  //console.log('node received req');
+  try {
+    //console.log('Received feedback request');
+    const { s, h, p, ph, r } = req.body;
+    console.log('Request body:', req.body);
+    const prompt = `I slept for ${s} hours, did homework for ${h} hours, used my phone for ${p} hours, did physical exercises for ${ph} hours, and relaxed for ${r} hours. Give me a detailed bullet pointed list of what factors I should increase or decrease and how I can change them to increase my productivity. Make sure your response is in bullet points and make sure the response is around 200 words. If you have to make an indent, use `;
+
+    //console.log('Prompt built:', prompt);
+
+    // Call Cohere API to get feedback
+    //Initialize Cohere client
+    const cohere = new CohereClient({
+      token: 'o6wravLGPwpZ5lT5EpXKPfMHTS3DjI5I7uU6VsRf',
+    });
+    
+    const chatStream = await cohere.chatStream({
+      chatHistory: [],
+      message: prompt,
+      connectors: [{ id: 'web-search' }],
+    });
+
+    let messageText = '';
+    for await (const message of chatStream) {
+      if (message.eventType === 'text-generation') {
+        messageText += message.text;
+      }
+    }
+
+    //console.log('Feedback received:', messageText);
+
+    // Send feedback back to client
+    res.json({ feedbackResult: messageText });
+  } catch (error) {
+    console.error('Error:', error);
     res.status(500).json({ message: 'Server Error' });
   }
 });
