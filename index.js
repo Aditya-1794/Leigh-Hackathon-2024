@@ -80,7 +80,7 @@ app.post('/api/getFeedback', async (req, res) => {
     //console.log('Received feedback request');
     const { s, h, p, ph, r } = req.body;
     console.log('Request body:', req.body);
-    const prompt = `I slept for ${s} hours, did homework for ${h} hours, used my phone for ${p} hours, did physical exercises for ${ph} hours, and relaxed for ${r} hours. Give me a detailed bullet pointed list of what factors I should increase or decrease and how I can change them to increase my productivity. Make sure your response is in bullet points and make sure the response is around 200 words. If you have to make an indent, use a dash. Don't bold or italicize any words in the response`;
+    const prompt = `I slept for ${s} hours, did homework for ${h} hours, used my phone for ${p} hours, did physical exercises for ${ph} hours, and relaxed for ${r} hours. Give me a one detailed paragraph with no bullet points of what factors I should increase or decrease and how I can change them to increase my productivity. Make sure your response is around 200 words. Don't bold or italicize any words in the response`;
 
     //console.log('Prompt built:', prompt);
 
