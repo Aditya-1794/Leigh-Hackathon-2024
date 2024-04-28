@@ -19,21 +19,21 @@ function displayLeaderboard(leaderboard) {
     <thead>
       <tr>
         <th>Rank</th>
-        <th>Username</th>
+        <th style="padding-left: -50px;">Username</th>
         <th>Score</th>
       </tr>
     </thead>
     <tbody>
       ${leaderboard.map((entry, index) => `
-        <tr onmouseover="this.style.backgroundColor='#f2f2f2'" onmouseout="this.style.backgroundColor=''" style="border-bottom: 1px solid black; box-shadow: 0 0 3px rgba(0, 0, 0, 0.35); margin: 5px; padding: 5px; border-radius: 5px; width: 120%; overflow: scroll;">
-          <td>${index + 1}</td>
-          <td>${entry.username}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-          <td>${entry.score}</td>
-<td>
-  <button style="background-color: white; border: none;" onClick="this.style.color='black'; this.innerHTML=(this.innerHTML == '★') ? '☆' : '★'">
-    ☆
-  </button>
-</td>
+        <tr onmouseover="this.style.backgroundColor='#f2f2f2'" onmouseout="this.style.backgroundColor=''" style="box-shadow: 0 0 3px rgba(0, 0, 0, 0.35); margin: 5px; padding: 5px; border-radius: 5px;">
+          <td style="position: relative; left: 10px;">${index + 1}</td>
+          <td style="width: 100%; position: relative; left: 50px;">${entry.username}</td>
+          <td style="width: 20%;">${entry.score}</td>
+          <td>
+            <button style="background-color: white; border: none;" onClick="this.style.color='black'; this.innerHTML=(this.innerHTML == '★') ? '☆' : '★'">
+              ☆
+            </button>
+          </td>
         </tr>
       `).join('')}
     </tbody>

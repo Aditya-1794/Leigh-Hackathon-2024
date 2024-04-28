@@ -40,10 +40,14 @@ function calculateProductivityScore(sleepHours, homeworkHours, phoneScreenTime, 
   }
   
    // Calculate productivity score (scaled to 100)
-    const productivityScore = Math.round((weightedSums / totalWeight) * 100);
+    var productivityScore = Math.round((weightedSums / totalWeight) * 100);
 
    // Provide detailed feedback based on score and most negative factor
   let feedback;
+  if (productivityScore > 100){
+    productivityScore = 100;
+    feedback = "Outstanding Productivity! smartass";
+  }
   if (productivityScore >= 80) {
     feedback = 'Excellent productivity!';
   } else if (productivityScore >= 60) {
@@ -74,6 +78,10 @@ function calculateProductivityScore(sleepHours, homeworkHours, phoneScreenTime, 
     } else {
       feedback += ' No specific factor identified as having a negative impact.';
     }
+  }
+  if (productivityScore<0){
+    productivityScore=0;
+    feedback = "Yeah u should really get your priorities get straight bro."
   }
 
  const scoreBreakdown = {};

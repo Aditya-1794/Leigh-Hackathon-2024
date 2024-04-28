@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', async() => {
   sendFeedbackData(sleep, hw, phone, physical, relax)
   .then(feedbackAI => {
     console.log('final feedback: ' + feedbackAI);
-    document.getElementById('feedback').innerHTML = feedbackAI;
+    //document.getElementById('feedback').innerHTML = feedbackAI;
   })
   .catch(error => {
     console.error('Error:', error);
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 
 async function sendFeedbackData(s, h, p, ph, r) {
   const feedbackTextarea = document.getElementById('feedbackTextarea');
-  const delay = 50; // Milliseconds between each character
+  const delay = 5; // Milliseconds between each character
 
   const url = '/api/getFeedback';
   const data = { s, h, p, ph, r };

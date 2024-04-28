@@ -1,0 +1,320 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  font-family: Nunito, Sofia-sans;
+  background-color: #ebebeb;
+  margin: 0;
+}
+
+h2 {
+  padding: 5px;
+  border-radius: 3px;
+  float: center;
+  width: 100%;
+  height: 30px;
+  
+  background-color: #65b3af;
+}
+
+.navbar{
+  background-color: black;
+}
+ul {
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: left;
+  display: inline-block;
+  list-style-type: none;
+}
+nav a {
+  color: #004d65;
+  position: relative;
+  font-size: 1.1em;
+  text-decoration: none;
+  padding: 6px 20px;
+  transition: .5s;
+}
+nav a:hover {
+    color: #53d5fd;
+}
+nav a span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-bottom: 2px solid #65b3af;
+    border-radius: 15px;
+    transform: scale(0) translateY(50px);
+    opacity: 0;
+    transition: .5s;
+}
+nav a:hover span {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+
+input {
+  border-radius:5px;
+  background: whitesmoke;
+  padding: 20px; 
+  width: 200px;
+  height: 30px;    
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.header {
+  background-color: #ff00ae;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The navbar container */
+.topnav {
+  overflow: hidden;
+  background-color: #000000;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+/* Navbar links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Links - change color on hover */
+.topnav a:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+input {
+  padding: 1.5px;
+  margin-left: 5px;
+  display: inline-block;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+  padding: 16px;
+  float: left;
+  border-radius: 10px;
+  background-color: white;
+}
+
+/* Left and right column */
+.column.left {
+  width: 30%;
+  padding: none;
+  float: left;
+  position: relative;
+  left: 5px;
+}
+
+.column.right {
+  width: 20%;
+  float: right;
+  position: relative;
+  right: 20px;
+}
+
+/* Middle column */
+.column.middle {
+  width: 38%;
+  position: relative; 
+  left: 29px;
+
+  height: 500px;
+  
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#scoreForm {
+  visibility: hidden;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+.popup {
+  width: 80%;
+  
+  align-items: center;
+  margin: none;
+  padding: none;
+}
+
+#popup #frame1 {
+  z-index: 1;
+  transition: 0.3s;
+  padding: none;
+
+  width: 80%;
+  height: 50%;
+}
+
+#popup #frame2 {
+  visibility: hidden;
+  z-index: 2;
+  padding: none;
+  margin: none;
+  width: 80%;
+
+  transition: 0.3s;
+}
+
+/* CSS */
+.button-18 {
+  align-items: center;
+  background-color: #0A66C2;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Nunito;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.button-18:hover,
+.button-18:focus { 
+  background-color: #16437E;
+  color: #ffffff;
+}
+
+.button-18:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button-18:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 125px;
+  border: 5px solid #f1f1f1;
+  border-radius: 15px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateX(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #65b3af;
+  color: black;
+
+  border-radius: 10px;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: #65b3af;
+  color: black;
+  transform: rotateX(180deg);
+  font-size: 12px;
+
+  border-radius: 10px;
+}
+
+.leaderboard-item {
+  background-color: yellow;
+  padding: 10px;
+}
+
+.wave-container {  
+  background-color: #65b3af;
+  position: relative;
+}
+
+.wave-container::before {   
+  content: "";
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  bottom: -0.3%;
+  left: 0;
+  background-size: auto;
+  background-repeat: repeat no-repeat;
+  background-position: 2vw bottom;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1200 121' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M0 1C19.5523 3 32.2291 5 51.5 8C104.5 17 200 39 300 60C400 80 500 101 600 93C700 84 800 48 900 27C987.526 5 1085.36 -1 1150 0C1169.54 -1 1180.49 0 1200 1V121H1150C1100 121 1000 121 900 121C800 121 700 121 600 121C500 121 400 121 300 121C200 121 100 121 50 121H0V1.98128Z' fill='%23FFF5EE'/></svg>");
+}
+
+@media(max-width:850px) {
+  .wave-container::before {    
+    height: 29px;
+  }  
+}
